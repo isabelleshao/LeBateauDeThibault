@@ -21,7 +21,7 @@ const HomeScreen = (props) => {
         <Text>https://www.lebateaudethibault.fr</Text>
       </View>
 
-      <View style={styles.container}>
+      <View style={styles.boutonsArea}>
         <TouchableOpacity
           style={styles.boutonProduitStyle}
           onPress={() => props.navigation.navigate("ProduitScreen")}
@@ -31,65 +31,56 @@ const HomeScreen = (props) => {
             Produits et Promotions
           </Text>
         </TouchableOpacity>
-
-        <View style={styles.boutonsArea}>
-          <FlatList
-            numColumns={2}
-            data={[
-              {
-                key: "Bateaux",
-                icon: (
-                  <MaterialCommunityIcons
-                    name="anchor"
-                    size={24}
-                    color="black"
-                  />
-                ),
-                action: console.log("testonPress"),
-              },
-              {
-                key: "Restaurants",
-                icon: (
-                  <MaterialIcons name="storefront" size={24} color="black" />
-                ),
-                action: console.log("testonPress"),
-              },
-              {
-                key: "Recettes",
-                icon: (
-                  <MaterialCommunityIcons
-                    name="silverware-clean"
-                    size={24}
-                    color="black"
-                  />
-                ),
-                action: console.log("testonPress"),
-              },
-              {
-                key: "Contact",
-                icon: (
-                  <MaterialCommunityIcons
-                    name="jellyfish-outline"
-                    size={24}
-                    color="black"
-                  />
-                ),
-                action: console.log("testonPress"),
-              },
-            ]}
-            renderItem={({ item }) => (
-              <TouchableOpacity
-                style={styles.boutonGeneriqueStyle}
-                onPress={() => console.log("testonPress")}
-              >
-                <Text style={styles.boutonTexte}>
-                  {item.icon}
-                  {item.key}
-                </Text>
-              </TouchableOpacity>
-            )}
-          />
-        </View>
+        <FlatList
+          numColumns={2}
+          data={[
+            {
+              key: "Bateaux",
+              icon: (
+                <MaterialCommunityIcons name="anchor" size={24} color="black" />
+              ),
+              action: console.log("testonPress"),
+            },
+            {
+              key: "Restaurants",
+              icon: <MaterialIcons name="storefront" size={24} color="black" />,
+              action: console.log("testonPress"),
+            },
+            {
+              key: "Recettes",
+              icon: (
+                <MaterialCommunityIcons
+                  name="silverware-clean"
+                  size={24}
+                  color="black"
+                />
+              ),
+              action: console.log("testonPress"),
+            },
+            {
+              key: "Contact",
+              icon: (
+                <MaterialCommunityIcons
+                  name="jellyfish-outline"
+                  size={24}
+                  color="black"
+                />
+              ),
+              action: console.log("testonPress"),
+            },
+          ]}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              style={styles.boutonGeneriqueStyle}
+              onPress={() => console.log("testonPress")}
+            >
+              <Text style={styles.boutonTexte}>
+                {item.icon}
+                {item.key}
+              </Text>
+            </TouchableOpacity>
+          )}
+        />
       </View>
     </View>
   );
@@ -99,26 +90,31 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+
+  description: {
+    flex: 3,
+  },
   text: {
     fontSize: 30,
   },
-  boutonsArea: {},
+  boutonsArea: {
+    flex: 2,
+    justifyContent: "flex-end",
+  },
 
   boutonProduitStyle: {
-    borderRadius: 4,
     marginHorizontal: "1%",
     marginBottom: 6,
     backgroundColor: "powderblue",
-    padding: 10,
+    padding: 20,
     width: "98%",
   },
 
   boutonGeneriqueStyle: {
-    borderRadius: 4,
     marginHorizontal: "1%",
     marginBottom: 6,
     backgroundColor: "powderblue",
-    padding: 10,
+    padding: 20,
     width: "48%",
   },
   boutonTexte: {
