@@ -49,7 +49,7 @@ function MyTabs() {
         options={{
           tabBarLabel: "Produit",
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="bell" color={color} size={size} />
+            <MaterialCommunityIcons name="shopping" color={color} size={size} />
           ),
         }}
       />
