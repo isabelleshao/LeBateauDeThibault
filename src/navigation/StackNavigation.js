@@ -8,6 +8,7 @@ import RestaurantScreen from "../screen/RestaurantScreen";
 import RecetteScreen from "../screen/RecetteScreen";
 import ProduitScreen from "../screen/ProduitScreen";
 import PanierScreen from "../screen/PanierScreen";
+import BateauComponent from "../component/BateauComponent";
 
 const Stack = createStackNavigator();
 
@@ -33,6 +34,8 @@ const MainStackNavigator = () => {
 
       <Stack.Screen name="Recettes" component={RecetteScreen} />
       <Stack.Screen name="Contact" component={ContactScreen} />
+
+      <Stack.Screen name="BateauSolo" component={BateauComponent} />
     </Stack.Navigator>
   );
 };

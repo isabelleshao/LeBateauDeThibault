@@ -20,7 +20,7 @@ const OpenLinkComponent = ({ url, children }) => {
 const styles = StyleSheet.create({
   contacts: {
     alignSelf: "center",
-    fontSize: 20,
+    fontSize: 18,
   },
 });
 

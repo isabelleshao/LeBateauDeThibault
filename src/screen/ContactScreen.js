@@ -1,18 +1,17 @@
-import React, { useCallback } from "react";
+import React from "react";
 import {
   Text,
   SafeAreaView,
   Image,
   StyleSheet,
-  View,
   ScrollView,
   ImageBackground,
 } from "react-native";
-import { OpenLinkComponent } from "../component/OpenLinkComponent";
-
+import CoordonneesComponent from "../component/CoordonneesComponent";
+import globalStyles from "../component/GlobalStyle";
 const ContactScreen = () => {
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={globalStyles.container}>
       <ImageBackground
         source={require("../assets/img/background.png")}
         resizeMode="cover"
@@ -24,20 +23,7 @@ const ContactScreen = () => {
             source={require("../assets/img/TIG.png")}
           />
           <Text style={styles.titre}>Le bateau de Thibault</Text>
-          <View>
-            <OpenLinkComponent url={"tel:0663999978"}>
-              06.63.99.99.78
-            </OpenLinkComponent>
-            <OpenLinkComponent url={"mailto:lebateaudethibault@gmail.com"}>
-              lebateaudethibault@gmail.com
-            </OpenLinkComponent>
-            <OpenLinkComponent
-              url={"https://www.facebook.com/lebateaudethibault"}
-            >
-              www.facebook.com/lebateaudethibault
-            </OpenLinkComponent>
-          </View>
-
+          <CoordonneesComponent />
           <Text style={styles.description}>
             Qu'il est chaud le soleil {"\n"} Quand nous sommes en vacances{" "}
             {"\n"} Y a d' la joie, des hirondelles {"\n"} C'est le sud de la
@@ -53,9 +39,6 @@ const ContactScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   titre: {
     fontSize: 30,
     alignSelf: "center",

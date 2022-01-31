@@ -6,7 +6,16 @@ const globalStyles = StyleSheet.create({
   },
 
   background: { flex: 1, justifyContent: "center" },
+  titre: {
+    fontSize: 30,
+    color: "white",
+    fontStyle: "italic",
+    marginBottom: 30,
+  },
 
+  bold: {
+    fontWeight: "bold",
+  },
   descriptionArea: {
     marginHorizontal: 15,
     alignItems: "center",
@@ -18,7 +27,7 @@ const globalStyles = StyleSheet.create({
   },
   boutonGeneriqueStyle: {
     marginHorizontal: "1%",
-    backgroundColor: "powderblue",
+    backgroundColor: "rgba(0, 0, 0, 0.1)",
     paddingHorizontal: 10,
     paddingVertical: 20,
     width: "48%",

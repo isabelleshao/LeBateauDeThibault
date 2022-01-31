@@ -9,8 +9,8 @@ import {
   ScrollView,
 } from "react-native";
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
-import globalStyles from "./constants/GlobalStyle";
-import { OpenLinkComponent } from "../component/OpenLinkComponent";
+import globalStyles from "../component/GlobalStyle";
+import CoordonneesComponent from "../component/CoordonneesComponent";
 
 const HomeScreen = (props) => {
   return (
@@ -22,22 +22,10 @@ const HomeScreen = (props) => {
       >
         <ScrollView>
           <View style={globalStyles.descriptionArea}>
-            <Text style={styles.titre}>Le Bateau de Thibault</Text>
+            <Text style={globalStyles.titre}>Le Bateau de Thibault</Text>
             <Text>Vente en direct de notre bateau</Text>
             <Text>Produits selon la saison, livraisons sur Paris</Text>
-            <View>
-              <OpenLinkComponent url={"tel:0663999978"}>
-                06.63.99.99.78
-              </OpenLinkComponent>
-              <OpenLinkComponent url={"mailto:lebateaudethibault@gmail.com"}>
-                lebateaudethibault@gmail.com
-              </OpenLinkComponent>
-              <OpenLinkComponent
-                url={"https://www.facebook.com/lebateaudethibault"}
-              >
-                www.facebook.com/lebateaudethibault
-              </OpenLinkComponent>
-            </View>
+            <CoordonneesComponent />
           </View>
 
           <View style={globalStyles.boutonsArea}>
@@ -111,16 +99,10 @@ const HomeScreen = (props) => {
 };
 
 const styles = StyleSheet.create({
-  titre: {
-    fontSize: 30,
-    color: "white",
-    fontStyle: "italic",
-  },
-
   boutonSoloStyle: {
     marginHorizontal: "1%",
     marginBottom: 10,
-    backgroundColor: "powderblue",
+    backgroundColor: "rgba(0, 0, 0, 0.1)",
     padding: 20,
     width: "98%",
   },
