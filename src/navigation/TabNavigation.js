@@ -9,12 +9,12 @@ const BottomTabNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: "powderblue",
+        tabBarActiveTintColor: "#5AB6FF",
         headerShown: false,
       }}
     >
       <Tab.Screen
-        name="Accueil"
+        name="MainStackNavigator"
         component={MainStackNavigator}
         options={{
           tabBarLabel: "Accueil",
@@ -24,7 +24,7 @@ const BottomTabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Panier"
+        name="PanierStackNavigator"
         component={PanierStackNavigator}
         options={{
           tabBarLabel: "Panier",

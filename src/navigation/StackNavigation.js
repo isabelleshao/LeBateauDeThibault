@@ -15,7 +15,8 @@ const screenOptionStyle = {
   headerMode: "screen",
   headerTintColor: "black",
   headerBackTitle: "Back",
-  headerStyle: { backgroundColor: "powderblue" },
+  headerStyle: { backgroundColor: "#5AB6FF" },
+  gestureEnabled: true,
 };
 
 const MainStackNavigator = () => {
