@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  FlatList,
-} from "react-native";
-import BoutonHome from "../component/BoutonHome";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 
 const HomeScreen = (props) => {
@@ -23,64 +16,64 @@ const HomeScreen = (props) => {
 
       <View style={styles.boutonsArea}>
         <TouchableOpacity
-          style={styles.boutonProduitStyle}
-          onPress={() => props.navigation.navigate("ProduitScreen")}
+          style={styles.boutonSoloStyle}
+          onPress={() => props.navigation.navigate("Produits")}
         >
           <Text style={styles.boutonTexte}>
-            <MaterialCommunityIcons name="fish" size={24} color="black" />{" "}
+            <MaterialCommunityIcons name="fish" style={styles.iconStyle} />
             Produits et Promotions
           </Text>
         </TouchableOpacity>
-        <FlatList
-          numColumns={2}
-          data={[
-            {
-              key: "Bateaux",
-              icon: (
-                <MaterialCommunityIcons name="anchor" size={24} color="black" />
-              ),
-              action: console.log("testonPress"),
-            },
-            {
-              key: "Restaurants",
-              icon: <MaterialIcons name="storefront" size={24} color="black" />,
-              action: console.log("testonPress"),
-            },
-            {
-              key: "Recettes",
-              icon: (
-                <MaterialCommunityIcons
-                  name="silverware-clean"
-                  size={24}
-                  color="black"
-                />
-              ),
-              action: console.log("testonPress"),
-            },
-            {
-              key: "Contact",
-              icon: (
-                <MaterialCommunityIcons
-                  name="jellyfish-outline"
-                  size={24}
-                  color="black"
-                />
-              ),
-              action: console.log("testonPress"),
-            },
-          ]}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              style={styles.boutonGeneriqueStyle}
-              onPress={() => console.log("testonPress")}
-            >
-              <Text style={styles.boutonTexte}>
-                {item.icon}
-                {item.key}
-              </Text>
-            </TouchableOpacity>
-          )}
-        />
+
+        <View style={styles.boutonDuoStyle}>
+          <TouchableOpacity
+            style={styles.boutonGeneriqueStyle}
+            onPress={() => props.navigation.navigate("Bateaux")}
+          >
+            <Text style={styles.boutonTexte}>
+              <MaterialCommunityIcons name="anchor" style={styles.iconStyle} />
+              Bateaux
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.boutonGeneriqueStyle}
+            onPress={() => props.navigation.navigate("Restaurants")}
+          >
+            <Text style={styles.boutonTexte}>
+              <MaterialIcons name="storefront" style={styles.iconStyle} />
+              Restaurants
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.boutonDuoStyle}>
+          <TouchableOpacity
+            style={styles.boutonGeneriqueStyle}
+            onPress={() => props.navigation.navigate("Recettes")}
+          >
+            <Text style={styles.boutonTexte}>
+              <MaterialCommunityIcons
+                name="silverware-clean"
+                style={styles.iconStyle}
+              />
+              Recettes
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.boutonGeneriqueStyle}
+            onPress={() => props.navigation.navigate("Contact")}
+          >
+            <Text style={styles.boutonTexte}>
+              <MaterialCommunityIcons
+                name="jellyfish-outline"
+                style={styles.iconStyle}
+              />
+              Contact
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -89,6 +82,7 @@ const HomeScreen = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginHorizontal: 15,
   },
 
   description: {
@@ -102,25 +96,37 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
   },
 
-  boutonProduitStyle: {
+  boutonSoloStyle: {
     marginHorizontal: "1%",
-    marginBottom: 6,
+    marginBottom: 10,
     backgroundColor: "powderblue",
     padding: 20,
     width: "98%",
   },
 
+  boutonDuoStyle: {
+    flexDirection: "row",
+    width: "100%",
+    marginBottom: 10,
+  },
+
   boutonGeneriqueStyle: {
     marginHorizontal: "1%",
-    marginBottom: 6,
     backgroundColor: "powderblue",
-    padding: 20,
+    paddingHorizontal: 10,
+    paddingVertical: 20,
     width: "48%",
   },
+
   boutonTexte: {
     textAlignVertical: "top",
     textAlign: "center",
     fontSize: 20,
+  },
+
+  iconStyle: {
+    fontSize: 30,
+    color: "black",
   },
 });
 

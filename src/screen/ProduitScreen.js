@@ -1,8 +1,13 @@
 import React from "react";
-import { Text, StyleSheet } from "react-native";
+import { Text, StyleSheet, View } from "react-native";
 
 const ProduitScreen = () => {
-  return <Text style={styles.text}>ProduitScreen</Text>;
+  return (
+    <View>
+      <Text style={styles.text}>ProduitScreen</Text>
+      <Text style={styles.text}>test</Text>
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
