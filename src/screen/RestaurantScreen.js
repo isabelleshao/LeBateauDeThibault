@@ -1,11 +1,32 @@
 import React from "react";
-import { Text, StyleSheet } from "react-native";
+import {
+  Text,
+  StyleSheet,
+  SafeAreaView,
+  ImageBackground,
+  ScrollView,
+} from "react-native";
 
 const RestaurantScreen = () => {
-  return <Text style={styles.text}>RestaurantScreen</Text>;
+  return (
+    <SafeAreaView style={styles.container}>
+      <ImageBackground
+        source={require("../assets/img/background.png")}
+        resizeMode="cover"
+        style={{ flex: 1, justifyContent: "center" }}
+      >
+        <ScrollView>
+          <Text style={styles.text}>RestaurantScreen</Text>
+        </ScrollView>
+      </ImageBackground>
+    </SafeAreaView>
+  );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   text: {
     fontSize: 30,
   },

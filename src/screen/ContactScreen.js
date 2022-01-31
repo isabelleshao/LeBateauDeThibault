@@ -4,28 +4,12 @@ import {
   SafeAreaView,
   Image,
   StyleSheet,
-  Linking,
   View,
   ScrollView,
   ImageBackground,
 } from "react-native";
+import { OpenLinkComponent } from "../component/OpenLinkComponent";
 
-const OpenURLButton = ({ url, children }) => {
-  const handlePress = useCallback(async () => {
-    const supported = await Linking.canOpenURL(url);
-    if (supported) {
-      await Linking.openURL(url);
-    } else {
-      Alert.alert(`Don't know how to open this URL: ${url}`);
-    }
-  }, [url]);
-
-  return (
-    <Text style={styles.contacts} onPress={handlePress}>
-      {children}
-    </Text>
-  );
-};
 const ContactScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
@@ -41,13 +25,17 @@ const ContactScreen = () => {
           />
           <Text style={styles.titre}>Le bateau de Thibault</Text>
           <View>
-            <OpenURLButton url={"tel:0663999978"}>06.63.99.99.78</OpenURLButton>
-            <OpenURLButton url={"mailto:lebateaudethibault@gmail.com"}>
+            <OpenLinkComponent url={"tel:0663999978"}>
+              06.63.99.99.78
+            </OpenLinkComponent>
+            <OpenLinkComponent url={"mailto:lebateaudethibault@gmail.com"}>
               lebateaudethibault@gmail.com
-            </OpenURLButton>
-            <OpenURLButton url={"https://www.facebook.com/lebateaudethibault"}>
+            </OpenLinkComponent>
+            <OpenLinkComponent
+              url={"https://www.facebook.com/lebateaudethibault"}
+            >
               www.facebook.com/lebateaudethibault
-            </OpenURLButton>
+            </OpenLinkComponent>
           </View>
 
           <Text style={styles.description}>
@@ -72,11 +60,6 @@ const styles = StyleSheet.create({
     fontSize: 30,
     alignSelf: "center",
   },
-  contacts: {
-    alignSelf: "center",
-    fontSize: 20,
-  },
-
   photo: {
     height: 300,
     resizeMode: "contain",

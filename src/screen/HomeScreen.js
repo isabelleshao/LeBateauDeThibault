@@ -9,41 +9,54 @@ import {
   ScrollView,
 } from "react-native";
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
+import globalStyles from "./constants/GlobalStyle";
+import { OpenLinkComponent } from "../component/OpenLinkComponent";
+
 const HomeScreen = (props) => {
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={globalStyles.container}>
       <ImageBackground
         source={require("../assets/img/background.png")}
         resizeMode="cover"
-        style={{ flex: 1, justifyContent: "center" }}
+        style={globalStyles.background}
       >
         <ScrollView>
-          <View style={styles.description}>
+          <View style={globalStyles.descriptionArea}>
             <Text style={styles.titre}>Le Bateau de Thibault</Text>
             <Text>Vente en direct de notre bateau</Text>
             <Text>Produits selon la saison, livraisons sur Paris</Text>
-            <Text>06 03 99 99 78</Text>
-            <Text>lebateaudethibault@gmail.com</Text>
-            <Text>https://www.lebateaudethibault.fr</Text>
+            <View>
+              <OpenLinkComponent url={"tel:0663999978"}>
+                06.63.99.99.78
+              </OpenLinkComponent>
+              <OpenLinkComponent url={"mailto:lebateaudethibault@gmail.com"}>
+                lebateaudethibault@gmail.com
+              </OpenLinkComponent>
+              <OpenLinkComponent
+                url={"https://www.facebook.com/lebateaudethibault"}
+              >
+                www.facebook.com/lebateaudethibault
+              </OpenLinkComponent>
+            </View>
           </View>
 
-          <View style={styles.boutonsArea}>
+          <View style={globalStyles.boutonsArea}>
             <TouchableOpacity
               style={styles.boutonSoloStyle}
               onPress={() => props.navigation.navigate("Produits")}
             >
-              <Text style={styles.boutonTexte}>
+              <Text style={globalStyles.boutonTexte}>
                 <MaterialCommunityIcons name="fish" style={styles.iconStyle} />
                 Produits et Promotions
               </Text>
             </TouchableOpacity>
 
-            <View style={styles.boutonDuoStyle}>
+            <View style={globalStyles.boutonDuoStyle}>
               <TouchableOpacity
-                style={styles.boutonGeneriqueStyle}
+                style={globalStyles.boutonGeneriqueStyle}
                 onPress={() => props.navigation.navigate("Bateaux")}
               >
-                <Text style={styles.boutonTexte}>
+                <Text style={globalStyles.boutonTexte}>
                   <MaterialCommunityIcons
                     name="anchor"
                     style={styles.iconStyle}
@@ -53,22 +66,22 @@ const HomeScreen = (props) => {
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={styles.boutonGeneriqueStyle}
+                style={globalStyles.boutonGeneriqueStyle}
                 onPress={() => props.navigation.navigate("Restaurants")}
               >
-                <Text style={styles.boutonTexte}>
+                <Text style={globalStyles.boutonTexte}>
                   <MaterialIcons name="storefront" style={styles.iconStyle} />
                   Restaurants
                 </Text>
               </TouchableOpacity>
             </View>
 
-            <View style={styles.boutonDuoStyle}>
+            <View style={globalStyles.boutonDuoStyle}>
               <TouchableOpacity
-                style={styles.boutonGeneriqueStyle}
+                style={globalStyles.boutonGeneriqueStyle}
                 onPress={() => props.navigation.navigate("Recettes")}
               >
-                <Text style={styles.boutonTexte}>
+                <Text style={globalStyles.boutonTexte}>
                   <MaterialCommunityIcons
                     name="silverware-clean"
                     style={styles.iconStyle}
@@ -78,10 +91,10 @@ const HomeScreen = (props) => {
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={styles.boutonGeneriqueStyle}
+                style={globalStyles.boutonGeneriqueStyle}
                 onPress={() => props.navigation.navigate("Contact")}
               >
-                <Text style={styles.boutonTexte}>
+                <Text style={globalStyles.boutonTexte}>
                   <MaterialCommunityIcons
                     name="jellyfish-outline"
                     style={styles.iconStyle}
@@ -98,25 +111,10 @@ const HomeScreen = (props) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-
-  description: {
-    marginHorizontal: 15,
-    alignItems: "center",
-    marginVertical: 30,
-    flex: 0.5,
-  },
   titre: {
     fontSize: 30,
     color: "white",
     fontStyle: "italic",
-  },
-  boutonsArea: {
-    marginHorizontal: 15,
-    alignItems: "flex-end",
-    flex: 0.5,
   },
 
   boutonSoloStyle: {
@@ -125,26 +123,6 @@ const styles = StyleSheet.create({
     backgroundColor: "powderblue",
     padding: 20,
     width: "98%",
-  },
-
-  boutonDuoStyle: {
-    flexDirection: "row",
-    width: "100%",
-    marginBottom: 10,
-  },
-
-  boutonGeneriqueStyle: {
-    marginHorizontal: "1%",
-    backgroundColor: "powderblue",
-    paddingHorizontal: 10,
-    paddingVertical: 20,
-    width: "48%",
-  },
-
-  boutonTexte: {
-    textAlignVertical: "top",
-    textAlign: "center",
-    fontSize: 20,
   },
 
   iconStyle: {
