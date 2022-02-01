@@ -10,6 +10,7 @@ import ProduitScreen from "../screen/ProduitScreen";
 import PanierScreen from "../screen/PanierScreen";
 import BateauDetailScreen from "../screen/BateauDetailScreen";
 import ProduitDetailScreen from "../screen/ProduitDetailScreen";
+import ShoppingCart from "../component/ShoppingCart";
 
 const Stack = createStackNavigator();
 
@@ -19,6 +20,7 @@ const screenOptionStyle = {
   headerBackTitle: "Back",
   headerStyle: { backgroundColor: "#5AB6FF" },
   gestureEnabled: true,
+  headerRight: () => <ShoppingCart onPress={console.log("test")} />,
 };
 
 const MainStackNavigator = () => {

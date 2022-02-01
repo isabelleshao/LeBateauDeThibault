@@ -31,7 +31,7 @@ const ProduitDetailScreen = ({ route, navigation }) => {
             <View key={filteredProduit.id}>
               <TouchableOpacity
                 style={styles.boutonSoloStyle}
-                onPress={() => console.log("test")}
+                onPress={() => alert("test")}
               >
                 <Image
                   style={styles.icon}
@@ -57,7 +57,7 @@ const ProduitDetailScreen = ({ route, navigation }) => {
             <View key={filteredProduit.id}>
               <TouchableOpacity
                 style={styles.boutonSoloStyle}
-                onPress={() => console.log("test")}
+                onPress={() => alert("test")}
               >
                 <Image
                   style={styles.icon}
