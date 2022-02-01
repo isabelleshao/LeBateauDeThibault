@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   photo: {
+    width: 200,
     height: 300,
     resizeMode: "contain",
     alignSelf: "center",

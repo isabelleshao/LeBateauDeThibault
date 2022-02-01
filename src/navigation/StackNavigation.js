@@ -8,7 +8,8 @@ import RestaurantScreen from "../screen/RestaurantScreen";
 import RecetteScreen from "../screen/RecetteScreen";
 import ProduitScreen from "../screen/ProduitScreen";
 import PanierScreen from "../screen/PanierScreen";
-import DetailsComponent from "../component/DetailsComponent";
+import BateauDetailScreen from "../screen/BateauDetailScreen";
+import ProduitDetailScreen from "../screen/ProduitDetailScreen";
 
 const Stack = createStackNavigator();
 
@@ -37,12 +38,12 @@ const MainStackNavigator = () => {
 
       <Stack.Screen
         name="Nos bateaux partenaires"
-        component={DetailsComponent}
+        component={BateauDetailScreen}
       />
 
       <Stack.Screen
-        name="Nos restaurants partenaires"
-        component={DetailsComponent}
+        name="Choisissez vos produits"
+        component={ProduitDetailScreen}
       />
     </Stack.Navigator>
   );

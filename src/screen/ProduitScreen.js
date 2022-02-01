@@ -24,7 +24,9 @@ const ProduitScreen = (props) => {
             <View>
               <TouchableOpacity
                 style={styles.boutonSoloStyle}
-                onPress={() => props.navigation.navigate("Produits")}
+                onPress={() =>
+                  props.navigation.navigate("Choisissez vos produits")
+                }
               >
                 <MaterialCommunityIcons
                   name="jellyfish"
