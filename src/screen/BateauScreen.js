@@ -106,7 +106,7 @@ const BateauScreen = (props) => {
                   <TouchableOpacity
                     style={styles.boutonAvecIcon}
                     onPress={() =>
-                      props.navigation.navigate("BateauSolo", {
+                      props.navigation.navigate("Nos bateaux partenaires", {
                         name: item.title,
                         image: item.img,
                         descriptioncom: item.descriptioncom,

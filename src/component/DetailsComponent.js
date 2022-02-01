@@ -7,8 +7,8 @@ import {
   ImageBackground,
   ScrollView,
 } from "react-native";
-import globalStyles from "../component/GlobalStyle";
-const BateauComponent = ({ route, navigation }) => {
+import globalStyles from "./GlobalStyle";
+const DetailsComponent = ({ route, navigation }) => {
   const name = route.params.name;
   const image = route.params.image;
   return (
@@ -33,4 +33,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BateauComponent;
+export default DetailsComponent;
