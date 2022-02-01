@@ -8,6 +8,7 @@ import {
   ScrollView,
 } from "react-native";
 import globalStyles from "../component/GlobalStyle";
+
 const BateauDetailScreen = ({ route, navigation }) => {
   const name = route.params.name;
   const image = route.params.image;

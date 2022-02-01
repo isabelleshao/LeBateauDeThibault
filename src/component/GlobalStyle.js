@@ -17,6 +17,7 @@ const globalStyles = StyleSheet.create({
 
   bold: {
     fontWeight: "bold",
+    fontSize: 18,
   },
   descriptionArea: {
     marginHorizontal: 15,

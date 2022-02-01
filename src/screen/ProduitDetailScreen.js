@@ -1,20 +1,75 @@
 import React from "react";
-import { Text, StyleSheet, SafeAreaView, ImageBackground, View } from "react-native";
-import CoordonneesComponent from "../component/CoordonneesComponent";
+import {
+  Text,
+  StyleSheet,
+  SafeAreaView,
+  ImageBackground,
+  TouchableOpacity,
+  View,
+  Image,
+  ScrollView,
+} from "react-native";
 import globalStyles from "../component/GlobalStyle";
+import data from "../assets/data.json";
 
+const produits = data;
 
-const ProduitDetailScreen = (props) => {
-  //Parce que ScrollView et FlatList ne sont pas compatible,
-  //https://stackoverflow.com/questions/66310158/flatlist-inside-scrollview-doesnt-work-in-react-native
-  const BeforeBateauScreen = () => {
+const ProduitDetailScreen = ({ route, navigation }) => {
+  const ResultatFiltre = () => {
+    if (route.params.categorie !== undefined) {
+      return <FiltrerCategorie />;
+    }
+    return <FiltrerPromotion />;
+  };
+
+  const FiltrerCategorie = () => {
     return (
-      <View style={globalStyles.descriptionArea}>
-        <Text style={globalStyles.titre}>Nos bateaux partenaires</Text>
-        <Text style={globalStyles.bold}>
-          Tous les eaux m&#xE8;nent &#xE0; Thibault.
-        </Text>
-        <CoordonneesComponent />
+      <View>
+        {produits
+          .filter((produit) => produit.category === route.params.categorie)
+          .map((filteredProduit) => (
+            <View key={filteredProduit.id}>
+              <TouchableOpacity
+                style={styles.boutonSoloStyle}
+                onPress={() => console.log("test")}
+              >
+                <Image
+                  style={styles.icon}
+                  source={require("../assets/img/poulpe.png")}
+                />
+                <View>
+                  <Text style={globalStyles.bold}>{filteredProduit.name}</Text>
+                  <Text>{filteredProduit.price} €</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          ))}
+      </View>
+    );
+  };
+
+  const FiltrerPromotion = () => {
+    return (
+      <View>
+        {produits
+          .filter((produit) => produit.discount > 0.0)
+          .map((filteredProduit) => (
+            <View key={filteredProduit.id}>
+              <TouchableOpacity
+                style={styles.boutonSoloStyle}
+                onPress={() => console.log("test")}
+              >
+                <Image
+                  style={styles.icon}
+                  source={require("../assets/img/poulpe.png")}
+                />
+                <View>
+                  <Text style={globalStyles.bold}>{filteredProduit.name}</Text>
+                  <Text>{filteredProduit.price} €</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          ))}
       </View>
     );
   };
@@ -26,12 +81,39 @@ const ProduitDetailScreen = (props) => {
         resizeMode="cover"
         style={globalStyles.background}
       >
-        <View></View>
+        <ScrollView>
+          <Text style={globalStyles.titre}>Choisissez vos produits :</Text>
+          <ResultatFiltre />
+        </ScrollView>
       </ImageBackground>
     </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  icon: {
+    height: 50,
+    width: 50,
+    marginRight: 10,
+  },
+  boutonSoloStyle: {
+    marginHorizontal: "1%",
+    marginVertical: 10,
+    backgroundColor: "rgba(0, 0, 0, 0.1)",
+    padding: 30,
+    width: "98%",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+  },
+
+  titre: {
+    fontSize: 30,
+    color: "black",
+    fontStyle: "italic",
+    marginBottom: 30,
+    marginTop: 20,
+    alignSelf: "center",
+  },
+});
 
 export default ProduitDetailScreen;

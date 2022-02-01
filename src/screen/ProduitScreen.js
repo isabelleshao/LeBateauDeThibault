@@ -25,7 +25,9 @@ const ProduitScreen = (props) => {
               <TouchableOpacity
                 style={styles.boutonSoloStyle}
                 onPress={() =>
-                  props.navigation.navigate("Choisissez vos produits")
+                  props.navigation.navigate("Choisissez vos produits", {
+                    categorie: 0,
+                  })
                 }
               >
                 <MaterialCommunityIcons
@@ -35,10 +37,15 @@ const ProduitScreen = (props) => {
                 <Text style={globalStyles.boutonTexte}>Poissons</Text>
               </TouchableOpacity>
             </View>
+
             <View>
               <TouchableOpacity
                 style={styles.boutonSoloStyle}
-                onPress={() => props.navigation.navigate("Produits")}
+                onPress={() =>
+                  props.navigation.navigate("Choisissez vos produits", {
+                    categorie: 1,
+                  })
+                }
               >
                 <MaterialCommunityIcons
                   name="jellyfish"
@@ -50,7 +57,11 @@ const ProduitScreen = (props) => {
             <View>
               <TouchableOpacity
                 style={styles.boutonSoloStyle}
-                onPress={() => props.navigation.navigate("Produits")}
+                onPress={() =>
+                  props.navigation.navigate("Choisissez vos produits", {
+                    categorie: 2,
+                  })
+                }
               >
                 <View style={styles.iconRound}>
                   <MaterialCommunityIcons
@@ -64,7 +75,11 @@ const ProduitScreen = (props) => {
             <View>
               <TouchableOpacity
                 style={styles.boutonSoloStyle}
-                onPress={() => props.navigation.navigate("Produits")}
+                onPress={() =>
+                  props.navigation.navigate("Choisissez vos produits", {
+                    categorie: undefined,
+                  })
+                }
               >
                 <MaterialCommunityIcons
                   name="jellyfish"
