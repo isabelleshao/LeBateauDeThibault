@@ -1,17 +1,15 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { Badge } from "react-native-elements";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-const ShoppingCart = (props) => {
+const HomeButton = (props) => {
   return (
     <TouchableOpacity 
       onPress={props.onPress}
     >
       <View style={{ padding: 5 }}>
         <View styles={styles.nbelements}>
-          <MaterialCommunityIcons name="cart" style={styles.shoppingcartstyles} />
-          <Badge value="7" status="error" containerStyle= {{position:"absolute", top:-4, left:-4 }} />
+          <MaterialCommunityIcons name="home" style={styles.shoppingcartstyles} />
         </View>
       </View>
     </TouchableOpacity>
@@ -26,4 +24,4 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 });
-export default ShoppingCart;
+export default HomeButton;

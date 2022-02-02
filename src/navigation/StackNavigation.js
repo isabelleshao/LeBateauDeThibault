@@ -11,17 +11,25 @@ import PanierScreen from "../screen/PanierScreen";
 import BateauDetailScreen from "../screen/BateauDetailScreen";
 import ProduitDetailScreen from "../screen/ProduitDetailScreen";
 import ShoppingCart from "../component/ShoppingCart";
+import HomeButton from "../component/HomeButton";
 
 const Stack = createStackNavigator();
 
-const screenOptionStyle = {
-  headerMode: "screen",
-  headerTintColor: "black",
-  headerBackTitle: "Back",
-  headerStyle: { backgroundColor: "#5AB6FF" },
-  gestureEnabled: true,
-  headerRight: () => <ShoppingCart onPress={console.log("test")} />,
-};
+function screenOptionStyle(props){
+  return {  
+    headerMode: "screen",
+    headerTintColor: "black",
+    headerBackTitle: "Back",
+    headerStyle: { backgroundColor: "#5AB6FF" },
+    gestureEnabled: true,
+    headerLeft: () => <HomeButton onPress={() =>{
+      props.navigation.navigate("Accueil")}
+    }></HomeButton>,
+    headerRight: () => <ShoppingCart onPress={() =>{
+      props.navigation.navigate("Panier")}
+    }></ShoppingCart>
+  }
+}
 
 const MainStackNavigator = () => {
   return (
@@ -47,6 +55,11 @@ const MainStackNavigator = () => {
         name="Choisissez vos produits"
         component={ProduitDetailScreen}
       />
+
+      <Stack.Screen 
+        name="Panier" 
+        component={PanierScreen} 
+      />
     </Stack.Navigator>
   );
 };
@@ -54,7 +67,10 @@ const MainStackNavigator = () => {
 const PanierStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
-      <Stack.Screen name="Panier" component={PanierScreen} />
+      <Stack.Screen 
+        name="Panier" 
+        component={PanierScreen} 
+      />
     </Stack.Navigator>
   );
 };
