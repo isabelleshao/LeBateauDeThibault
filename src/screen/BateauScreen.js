@@ -41,6 +41,20 @@ const BATEAUX = [
     descriptioncom: "XXX YYY ZZZ",
     aboutus: `Qu'il est chaud le soleil\nQuand nous sommes en vacances\nY a d' la joie, des hirondelles\nC'est le sud de la France\nPapa bricole au garage\nMaman lit dans la chaise longue\nDans ce joli paysage\nMoi, je me balade en tongs\n\nQue de bonheur!\nQue de bonheur!`,
   },
+  {
+    title: "Contact",
+    img: require("../assets/img/ancre.png"),
+    icon: require("../assets/img/ancre.png"),
+    descriptioncom: "",
+    aboutus: "",
+  },
+  {
+    title: "Contact",
+    img: require("../assets/img/ancre.png"),
+    icon: require("../assets/img/ancre.png"),
+    descriptioncom: "",
+    aboutus: "",
+  },
 ];
 
 const BateauScreen = (props) => {
@@ -58,34 +72,6 @@ const BateauScreen = (props) => {
     );
   };
 
-  const AfterBateauScreen = () => {
-    return (
-      <View style={globalStyles.boutonDuoStyle}>
-        <TouchableOpacity
-          style={styles.boutonAvecIcon}
-          onPress={() => props.navigation.navigate("Contact")}
-        >
-          <Image
-            style={styles.icon}
-            source={require("../assets/img/ancre.png")}
-          />
-          <Text style={styles.boutonTexte}>Contact</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.boutonAvecIcon}
-          onPress={() => props.navigation.navigate("Contact")}
-        >
-          <Image
-            style={styles.icon}
-            source={require("../assets/img/ancre.png")}
-          />
-          <Text style={styles.boutonTexte}>Contact</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  };
-
   return (
     <SafeAreaView style={globalStyles.container}>
       <ImageBackground
@@ -98,26 +84,40 @@ const BateauScreen = (props) => {
             <FlatList
               data={BATEAUX}
               ListHeaderComponent={BeforeBateauScreen}
-              ListFooterComponent={AfterBateauScreen}
               keyExtractor={(item, index) => item.title}
               numColumns={2}
               renderItem={({ item }) => {
-                return (
-                  <TouchableOpacity
-                    style={styles.boutonAvecIcon}
-                    onPress={() =>
-                      props.navigation.navigate("Nos bateaux partenaires", {
-                        name: item.title,
-                        image: item.img,
-                        descriptioncom: item.descriptioncom,
-                        aboutus: item.aboutus,
-                      })
-                    }
-                  >
-                    <Image style={styles.icon} source={item.icon} />
-                    <Text style={styles.boutonTexte}> {item.title}</Text>
-                  </TouchableOpacity>
-                );
+                if (item.descriptioncom === "") {
+                  return (
+                    <TouchableOpacity
+                      style={styles.boutonAvecIcon}
+                      onPress={() => props.navigation.navigate("Contact")}
+                    >
+                      <Image
+                        style={styles.icon}
+                        source={require("../assets/img/ancre.png")}
+                      />
+                      <Text style={styles.boutonTexte}>Contact</Text>
+                    </TouchableOpacity>
+                  );
+                } else {
+                  return (
+                    <TouchableOpacity
+                      style={styles.boutonAvecIcon}
+                      onPress={() =>
+                        props.navigation.navigate("Nos bateaux partenaires", {
+                          name: item.title,
+                          image: item.img,
+                          descriptioncom: item.descriptioncom,
+                          aboutus: item.aboutus,
+                        })
+                      }
+                    >
+                      <Image style={styles.icon} source={item.icon} />
+                      <Text style={styles.boutonTexte}> {item.title}</Text>
+                    </TouchableOpacity>
+                  );
+                }
               }}
             />
           </View>

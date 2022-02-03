@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import globalStyles from "../component/GlobalStyle";
 
-const BateauDetailScreen = ({ route, navigation }) => {
+const DetailScreen = ({ route, navigation }) => {
   const name = route.params.name;
   const image = route.params.image;
   const descriptioncom = route.params.descriptioncom;
@@ -24,7 +24,10 @@ const BateauDetailScreen = ({ route, navigation }) => {
         <ScrollView>
           <Image style={styles.photo} source={image} />
           <Text style={globalStyles.titre}>{name}</Text>
-          <Text style={styles.descriptioncom}>{descriptioncom}</Text>
+          {descriptioncom !== undefined && (
+            <Text style={styles.descriptioncom}>{descriptioncom}</Text>
+          )}
+
           <Text style={styles.description}>{aboutus}</Text>
         </ScrollView>
       </ImageBackground>
@@ -53,4 +56,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BateauDetailScreen;
+export default DetailScreen;

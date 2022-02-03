@@ -11,13 +11,14 @@ const globalStyles = StyleSheet.create({
     color: "white",
     fontStyle: "italic",
     marginBottom: 30,
-    alignItems: "center",
+
     alignSelf: "center",
   },
 
   bold: {
     fontWeight: "bold",
     fontSize: 18,
+    textAlign: "center",
   },
   descriptionArea: {
     marginHorizontal: 15,
