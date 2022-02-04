@@ -2,8 +2,12 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Badge } from "react-native-elements";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useSelector } from "react-redux";
+
+
 
 const ShoppingCart = (props) => {
+  const count = useSelector((state) => state.basket.nbItems)
   return (
     <TouchableOpacity 
       onPress={props.onPress}
@@ -11,7 +15,7 @@ const ShoppingCart = (props) => {
       <View style={{ padding: 5 }}>
         <View styles={styles.nbelements}>
           <MaterialCommunityIcons name="cart" style={styles.shoppingcartstyles} />
-          <Badge value="7" status="error" containerStyle= {{position:"absolute", top:-4, left:-4 }} />
+          <Badge value={count} containerStyle={{position:"absolute", top:-4, left:-4 }} />
         </View>
       </View>
     </TouchableOpacity>

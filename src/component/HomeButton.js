@@ -1,11 +1,17 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useDispatch } from 'react-redux'
+import { removeAllFromBasket } from "../features/counter/basketSlice"
 
 const HomeButton = (props) => {
+  const dispatch = useDispatch()
   return (
     <TouchableOpacity 
-      onPress={props.onPress}
+      onPress={() => {
+        dispatch(removeAllFromBasket());
+        props.onPress();
+      }}
     >
       <View style={{ padding: 5 }}>
         <View styles={styles.nbelements}>

@@ -8,6 +8,7 @@ import {
   SafeAreaView,
   ScrollView,
 } from "react-native";
+
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import globalStyles from "../component/GlobalStyle";
 import CoordonneesComponent from "../component/CoordonneesComponent";
@@ -27,7 +28,6 @@ const HomeScreen = (props) => {
             <Text>Produits selon la saison, livraisons sur Paris</Text>
             <CoordonneesComponent />
           </View>
-
           <View style={globalStyles.boutonsArea}>
             <TouchableOpacity
               style={styles.boutonSoloStyle}

@@ -1,4 +1,7 @@
 import React from "react";
+import { useDispatch } from 'react-redux'
+import { addToBasket } from "../features/counter/basketSlice"
+
 import {
   Text,
   StyleSheet,
@@ -15,6 +18,7 @@ import data from "../assets/data.json";
 const produits = data;
 
 const ProduitDetailScreen = ({ route, navigation }) => {
+  const dispatch = useDispatch()
   const ResultatFiltre = () => {
     if (route.params.categorie !== undefined) {
       return <FiltrerCategorie />;
@@ -31,7 +35,7 @@ const ProduitDetailScreen = ({ route, navigation }) => {
             <View key={filteredProduit.id}>
               <TouchableOpacity
                 style={styles.boutonSoloStyle}
-                onPress={() => alert("Product added to cart")}
+                onPress={() => dispatch(addToBasket(filteredProduit.id))}
               >
                 <Image
                   style={styles.icon}
@@ -57,7 +61,7 @@ const ProduitDetailScreen = ({ route, navigation }) => {
             <View key={filteredProduit.id}>
               <TouchableOpacity
                 style={styles.boutonSoloStyle}
-                onPress={() => alert("Product added to cart ")}
+                onPress={() => dispatch(addToBasket(filteredProduit.id))}
               >
                 <Image
                   style={styles.icon}
