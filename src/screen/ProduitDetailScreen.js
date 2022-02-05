@@ -1,6 +1,6 @@
 import React from "react";
-import { useDispatch } from 'react-redux'
-import { addToBasket } from "../features/counter/basketSlice"
+import { useDispatch } from "react-redux";
+import { addToBasket } from "../component/BasketSlice";
 
 import {
   Text,
@@ -18,7 +18,7 @@ import data from "../assets/data.json";
 const produits = data;
 
 const ProduitDetailScreen = ({ route, navigation }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const ResultatFiltre = () => {
     if (route.params.categorie !== undefined) {
       return <FiltrerCategorie />;

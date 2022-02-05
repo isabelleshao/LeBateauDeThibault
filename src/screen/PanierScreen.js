@@ -1,8 +1,7 @@
 import React from "react";
-import { useSelector, useDispatch } from 'react-redux'
-import { removeFromBasket} from "../features/counter/basketSlice"
+import { useSelector, useDispatch } from "react-redux";
+import { removeFromBasket } from "../component/BasketSlice";
 import data from "../assets/data.json";
-
 
 import {
   View,
@@ -16,12 +15,13 @@ import {
 } from "react-native";
 import globalStyles from "../component/GlobalStyle";
 
-
 const PanierScreen = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const panier = useSelector((state) => state.basket.basket);
   const keys = Object.keys(panier);
-  const filteredData = data.filter((produit) => (keys.includes(String(produit.id)) && panier[produit.id] > 0) )
+  const filteredData = data.filter(
+    (produit) => keys.includes(String(produit.id)) && panier[produit.id] > 0
+  );
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground
@@ -30,7 +30,7 @@ const PanierScreen = () => {
         style={{ flex: 1, justifyContent: "center" }}
       >
         <ScrollView>
-        {filteredData.map((filteredProduit) => (
+          {filteredData.map((filteredProduit) => (
             <View key={filteredProduit.id}>
               <TouchableOpacity
                 style={styles.boutonSoloStyle}
@@ -42,7 +42,11 @@ const PanierScreen = () => {
                 />
                 <View>
                   <Text style={globalStyles.bold}>{filteredProduit.name}</Text>
-                  <Text> {panier[filteredProduit.id]}x{filteredProduit.price} € = {filteredProduit.price*panier[filteredProduit.id]}€ </Text>
+                  <Text>
+                    {" "}
+                    {panier[filteredProduit.id]}x{filteredProduit.price} € ={" "}
+                    {filteredProduit.price * panier[filteredProduit.id]}€{" "}
+                  </Text>
                 </View>
               </TouchableOpacity>
             </View>
@@ -54,7 +58,7 @@ const PanierScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container : {flex:1},
+  container: { flex: 1 },
   icon: {
     height: 50,
     width: 50,

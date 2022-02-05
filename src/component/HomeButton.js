@@ -1,13 +1,13 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { useDispatch } from 'react-redux'
-import { removeAllFromBasket } from "../features/counter/basketSlice"
+import { useDispatch } from "react-redux";
+import { removeAllFromBasket } from "../component/BasketSlice";
 
 const HomeButton = (props) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   return (
-    <TouchableOpacity 
+    <TouchableOpacity
       onPress={() => {
         dispatch(removeAllFromBasket());
         props.onPress();
@@ -15,7 +15,10 @@ const HomeButton = (props) => {
     >
       <View style={{ padding: 5 }}>
         <View styles={styles.nbelements}>
-          <MaterialCommunityIcons name="home" style={styles.shoppingcartstyles} />
+          <MaterialCommunityIcons
+            name="home"
+            style={styles.shoppingcartstyles}
+          />
         </View>
       </View>
     </TouchableOpacity>
