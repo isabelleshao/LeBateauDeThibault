@@ -18,7 +18,7 @@ import data from "../assets/data.json";
 const produits = data;
 
 const ProduitDetailScreen = ({ route, navigation }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const ResultatFiltre = () => {
     if (route.params.categorie !== undefined) {
       return <FiltrerCategorie />;

@@ -3,6 +3,6 @@ import basketReducer from "../component/BasketSlice"
 
 export default configureStore({
   reducer: {
-      basket: basketReducer,
+    basket: basketReducer,
   },
-})
+});
