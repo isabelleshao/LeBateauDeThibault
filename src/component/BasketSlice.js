@@ -11,31 +11,35 @@ export const basketSlice = createSlice({
         state.basket[action.payload] = 1;
         state.nbItems++;
       } else {
-        state.basket[action.payload] +=1;
+        state.basket[action.payload] += Number(1);
         state.nbItems++
       }
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
     },
+    
     removeFromBasket: (state, action) => {
       if(state.basket[action.payload] > 0){
-        state.basket[action.payload] -= 1;
+        state.basket[action.payload] -= Number(1);
         state.nbItems--;
       }
     },
+
     removeAllFromBasket: (state) => {
       state.basket = {};
       state.nbItems = 0;
     },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload
+
+    setQuantity: (state, action) => {
+      const selectedId = action.payload.selectedId;
+      state.nbItems -= Number(state.basket[selectedId]);
+      console.log(state.nbItems);
+      state.basket[selectedId] = Number(action.payload.option);
+      state.nbItems += Number(state.basket[selectedId]);
+      console.log(state.nbItems);
     },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { addToBasket, removeFromBasket,decrement, incrementByAmount, removeAllFromBasket } = basketSlice.actions
+export const { addToBasket, removeFromBasket,decrement, setQuantity, removeAllFromBasket } = basketSlice.actions
 
 export default basketSlice.reducer

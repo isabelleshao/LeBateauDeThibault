@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useState} from "react";
 import { useSelector, useDispatch } from 'react-redux'
-import { removeFromBasket} from "../features/counter/basketSlice"
+import { removeFromBasket, setQuantity} from "../component/BasketSlice"
+import { ModalPicker } from "../component/ModalPicker";
 import data from "../assets/data.json";
 
 
@@ -13,6 +14,7 @@ import {
   ImageBackground,
   TouchableOpacity,
   ScrollView,
+  Modal,
 } from "react-native";
 import globalStyles from "../component/GlobalStyle";
 
@@ -21,7 +23,20 @@ const PanierScreen = () => {
   const dispatch = useDispatch()
   const panier = useSelector((state) => state.basket.basket);
   const keys = Object.keys(panier);
+
+  const [chooseData, setChooseData] = useState('Modifier la quantité ')
+  const [isModalVisible, setisModalVisible] = useState(false)
+  const [selectedId, setId] = useState(0);
+
   const filteredData = data.filter((produit) => (keys.includes(String(produit.id)) && panier[produit.id] > 0) )
+  const changeModalVisibility = (bool) => {
+    setisModalVisible(bool);
+  }
+
+  const setData = (option) => {
+    setChooseData(option);
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground
@@ -34,8 +49,22 @@ const PanierScreen = () => {
             <View key={filteredProduit.id}>
               <TouchableOpacity
                 style={styles.boutonSoloStyle}
-                onPress={() => dispatch(removeFromBasket(filteredProduit.id))}
+                onPress={() => {setId(filteredProduit.id);
+                  setisModalVisible(true);
+                }}
               >
+                  <Modal
+                    transparent={true}
+                    animationType='fade'
+                    visible={isModalVisible}
+                  >
+                  <ModalPicker
+                    style={{backgroundColor: "white"}}
+                    changeModalVisibility = {changeModalVisibility}
+                    setData={setData}
+                    selectedId={selectedId}
+                  />
+                </Modal>
                 <Image
                   style={styles.icon}
                   source={require("../assets/img/poulpe.png")}
@@ -48,6 +77,7 @@ const PanierScreen = () => {
             </View>
           ))}
         </ScrollView>
+
       </ImageBackground>
     </SafeAreaView>
   );
@@ -70,14 +100,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
 
-  titre: {
-    fontSize: 30,
-    color: "black",
-    fontStyle: "italic",
-    marginBottom: 30,
-    marginTop: 20,
-    alignSelf: "center",
-  },
+  
 });
 
 export default PanierScreen;

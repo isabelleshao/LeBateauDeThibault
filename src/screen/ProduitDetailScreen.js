@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from 'react-redux'
-import { addToBasket } from "../features/counter/basketSlice"
+import { addToBasket } from "../component/BasketSlice"
 
 import {
   Text,
