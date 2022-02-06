@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { ModalPicker } from "../component/ModalPicker";
 import data from "../assets/data.json";
 import deliverySpots from "../assets/deliverySpots.json";
+import nextDay from "date-fns/nextDay";
 
 import {
   View,
@@ -15,6 +16,7 @@ import {
   ScrollView,
   Modal,
   Alert,
+  Picker,
 } from "react-native";
 import globalStyles from "../component/GlobalStyle";
 
@@ -26,6 +28,7 @@ const PanierScreen = () => {
   const [chooseData, setChooseData] = useState("Modifier la quantité ");
   const [isModalVisible, setisModalVisible] = useState(false);
   const [selectedId, setId] = useState(0);
+  const [selectedValue, setSelectedValue] = useState(deliverySpots[0]);
 
   const filteredData = data.filter(
     (produit) => keys.includes(String(produit.id)) && panier[produit.id] > 0
@@ -33,7 +36,6 @@ const PanierScreen = () => {
   const changeModalVisibility = (bool) => {
     setisModalVisible(bool);
   };
-
   const setData = (option) => {
     setChooseData(option);
   };
@@ -60,7 +62,7 @@ const PanierScreen = () => {
         },
         {
           text: "Oui",
-          onPress: createValidationAlert,
+          onPress: () => createValidationAlert(),
         },
       ],
       {
@@ -68,7 +70,7 @@ const PanierScreen = () => {
       }
     );
 
-  var date = new Date().toLocaleDateString();
+  const date = nextDay(new Date(), new Date(selectedValue.date).getDay());
 
   if (filteredData.length === 0) {
     return (
@@ -131,19 +133,24 @@ const PanierScreen = () => {
               </View>
             ))}
 
-            <View style={styles.total}>
-              <TouchableOpacity onPress={() => console.log("oui")}>
-                <View>
-                  <Text style={styles.totalText}>Total : {getTotal()} €</Text>
-                  <Text style={styles.commandeText}>
-                    Lieu de Livraison (choisir) : {deliverySpots[1].name}
-                  </Text>
-                  <Text style={styles.commandeText}>
-                    Date de Livraison : {date}
-                  </Text>
-                </View>
+              <View style={styles.total}>
+                <TouchableOpacity onPress={() => console.log(selectedValue)}>
+                <View style={styles.container}>  
+                  <Text style={styles.textStyle}>Point de livraison :</Text>  
+                  <Picker style={styles.pickerStyle}  
+                          selectedValue={selectedValue.id}  
+                          onValueChange={(id) => setSelectedValue(deliverySpots.find((spot) => spot.id ==id))}
+                      >  
+                      <Picker.Item label={deliverySpots[0].name} value={deliverySpots[0].id} />  
+                      <Picker.Item label={deliverySpots[1].name} value={deliverySpots[1].id} />  
+                      <Picker.Item label={deliverySpots[2].name} value={deliverySpots[2].id} /> 
+                      <Picker.Item label={deliverySpots[3].name} value={deliverySpots[3].id} />  
+                  </Picker>
+              </View>
+              <Text style={styles.commandeText}>
+                      Date de Livraison : {date.toLocaleDateString()}
+              </Text>  
               </TouchableOpacity>
-
               <TouchableOpacity
                 onPress={createConfirmationAlert}
               >
