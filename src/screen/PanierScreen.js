@@ -33,7 +33,15 @@ const PanierScreen = () => {
   const setData = (option) => {
     setChooseData(option);
   }
+  const getTotal = () => {
+    var total = 0;
+    filteredData.forEach(element => 
+      total += Number(element.price*panier[element.id])
+    )
+    return total;
+    }
 
+  var date = new Date().toLocaleDateString();
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground
@@ -78,7 +86,17 @@ const PanierScreen = () => {
             </View>
           ))}
         </ScrollView>
-
+        <TouchableOpacity style={styles.container}
+                  onPress={() => console.log("oui")}>
+          <View>
+            <Text> Total : {getTotal()} </Text>     
+          </View>
+          <View>
+          </View>
+          <View>
+            <Text>{date}</Text>
+          </View>
+        </TouchableOpacity>
       </ImageBackground>
     </SafeAreaView>
   );
