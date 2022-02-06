@@ -31,10 +31,8 @@ export const basketSlice = createSlice({
     setQuantity: (state, action) => {
       const selectedId = action.payload.selectedId;
       state.nbItems -= Number(state.basket[selectedId]);
-      console.log(state.nbItems);
       state.basket[selectedId] = Number(action.payload.option);
       state.nbItems += Number(state.basket[selectedId]);
-      console.log(state.nbItems);
     },
   },
 })

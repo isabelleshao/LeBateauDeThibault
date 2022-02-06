@@ -13,6 +13,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Modal,
+  Alert,
 } from "react-native";
 import globalStyles from "../component/GlobalStyle";
 
@@ -39,7 +40,26 @@ const PanierScreen = () => {
       total += Number(element.price*panier[element.id])
     )
     return total;
-    }
+  }
+
+  const createValidationAlert = () =>
+    Alert.alert(
+      "Validation",
+      "Commande validée !"
+  );
+
+  const createTwoButtonAlert = () =>
+    Alert.alert(
+      "Confirmation",
+      "Confirmez-vous la commande ?",
+      [
+        {
+          text: "Annuler",
+          onPress: () => console.log("Annulation"),
+        },
+        { text: "Valider", onPress: createValidationAlert}
+      ]
+    );
 
   var date = new Date().toLocaleDateString();
   return (
@@ -87,7 +107,7 @@ const PanierScreen = () => {
           ))}
         </ScrollView>
         <TouchableOpacity style={styles.container}
-                  onPress={() => console.log("oui")}>
+                  onPress={createTwoButtonAlert}>
           <View>
             <Text> Total : {getTotal()} </Text>     
           </View>
