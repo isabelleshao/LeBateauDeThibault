@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { ModalPicker } from "../component/ModalPicker";
 import data from "../assets/data.json";
+import deliverySpots from "../assets/deliverySpots.json";
 
 import {
   View,
@@ -47,7 +48,7 @@ const PanierScreen = () => {
   const createValidationAlert = () =>
     Alert.alert("Validation", "Commande validée !");
 
-  const createTwoButtonAlert = () =>
+  const createConfirmationAlert = () =>
     Alert.alert(
       "Envoyer votre commande?",
       `Envoyer votre commande de ` + getTotal() + ` € à Thibault?`,
@@ -59,7 +60,7 @@ const PanierScreen = () => {
         },
         {
           text: "Oui",
-          onPress: () => createValidationAlert,
+          onPress: createValidationAlert,
         },
       ],
       {
@@ -135,7 +136,7 @@ const PanierScreen = () => {
                 <View>
                   <Text style={styles.totalText}>Total : {getTotal()} €</Text>
                   <Text style={styles.commandeText}>
-                    Lieu de Livraison (choisir) : {date}
+                    Lieu de Livraison (choisir) : {deliverySpots[1].name}
                   </Text>
                   <Text style={styles.commandeText}>
                     Date de Livraison : {date}
@@ -144,28 +145,7 @@ const PanierScreen = () => {
               </TouchableOpacity>
 
               <TouchableOpacity
-                onPress={() =>
-                  Alert.alert(
-                    "Envoyer votre commande?",
-                    `Envoyer votre commande de ` +
-                      getTotal() +
-                      ` € à Thibault?`,
-                    [
-                      {
-                        text: "Non",
-                        onPress: () => console.log("Cancel Pressed"),
-                        style: "cancel",
-                      },
-                      {
-                        text: "Oui",
-                        onPress: () => Alert.alert("Votre commande est passée"),
-                      },
-                    ],
-                    {
-                      cancelable: true,
-                    }
-                  )
-                }
+                onPress={createConfirmationAlert}
               >
                 <View>
                   <Text style={styles.totalText}>Valider</Text>
