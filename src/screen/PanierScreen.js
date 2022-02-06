@@ -133,27 +133,45 @@ const PanierScreen = () => {
               </View>
             ))}
 
-              <View style={styles.total}>
-                <TouchableOpacity onPress={() => console.log(selectedValue)}>
-                <View style={styles.container}>  
-                  <Text style={styles.textStyle}>Point de livraison :</Text>  
-                  <Picker style={styles.pickerStyle}  
-                          selectedValue={selectedValue.id}  
-                          onValueChange={(id) => setSelectedValue(deliverySpots.find((spot) => spot.id ==id))}
-                      >  
-                      <Picker.Item label={deliverySpots[0].name} value={deliverySpots[0].id} />  
-                      <Picker.Item label={deliverySpots[1].name} value={deliverySpots[1].id} />  
-                      <Picker.Item label={deliverySpots[2].name} value={deliverySpots[2].id} /> 
-                      <Picker.Item label={deliverySpots[3].name} value={deliverySpots[3].id} />  
-                  </Picker>
+            <View style={styles.total}>
+              <View>
+                <Text style={styles.totalText}>Total : {getTotal()} €</Text>
               </View>
-              <Text style={styles.commandeText}>
-                      Date de Livraison : {date.toLocaleDateString()}
-              </Text>  
+              <TouchableOpacity onPress={() => console.log(selectedValue)}>
+                <View style={styles.container}>
+                  <Text style={styles.commandeText}>Point de livraison :</Text>
+                  <Picker
+                    style={styles.pickerStyle}
+                    selectedValue={selectedValue.id}
+                    onValueChange={(id) =>
+                      setSelectedValue(
+                        deliverySpots.find((spot) => spot.id == id)
+                      )
+                    }
+                  >
+                    <Picker.Item
+                      label={deliverySpots[0].name}
+                      value={deliverySpots[0].id}
+                    />
+                    <Picker.Item
+                      label={deliverySpots[1].name}
+                      value={deliverySpots[1].id}
+                    />
+                    <Picker.Item
+                      label={deliverySpots[2].name}
+                      value={deliverySpots[2].id}
+                    />
+                    <Picker.Item
+                      label={deliverySpots[3].name}
+                      value={deliverySpots[3].id}
+                    />
+                  </Picker>
+                </View>
+                <Text style={styles.commandeText}>
+                  Date de Livraison : {date.toLocaleDateString()}
+                </Text>
               </TouchableOpacity>
-              <TouchableOpacity
-                onPress={createConfirmationAlert}
-              >
+              <TouchableOpacity onPress={createConfirmationAlert}>
                 <View>
                   <Text style={styles.totalText}>Valider</Text>
                 </View>
@@ -171,6 +189,11 @@ const styles = StyleSheet.create({
 
   total: {
     backgroundColor: "rgba(0, 0, 0, 0.2)",
+  },
+
+  pickerStyle: {
+    backgroundColor: "white",
+    fontSize: 20,
   },
   totalText: {
     fontSize: 30,
